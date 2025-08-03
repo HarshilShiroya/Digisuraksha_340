@@ -1,0 +1,73 @@
+# First run (will auto-download data files)
+python homograph_detector.py "раураl.com"
+
+# Force update Unicode data
+python homograph_detector.py --update-data
+
+# With whitelist
+python homograph_detector.py "paypal.com" --whitelist trusted.json
+The trusted.json file serves as a whitelist of legitimate domains or strings that your system recognizes as safe.
+Sample trusted.json:
+["paypal.com", "apple.com", "ebay.com", "google.com", "example.org"]
+
+
+
+Precomputation:
+  The tool computes "skeletons" for all entries in trusted.json during initialization
+  These skeletons are stored in memory for fast comparison
+
+Detection Logic:
+  python
+  if input_skeleton == trusted_skeleton and input_clean != trusted_string:
+      FLAG as homograph attack
+
+Key Benefit:
+  Allows the system to detect when an input looks identical to a trusted entity (same skeleton) but uses different characters
+  Example: раураl.com vs paypal.com have the same skeleton (paypal.com)
+
+
+
+
+URL Homograph Detection
+the tool fully supports URL homograph detection with these features:
+command:  python homograph-check.py "https://раураl.com/login"
+
+--> Multi-Label Processing:
+    python
+    # For "www.paypal.com.example.org":
+    labels = ["www", "paypal", "com", "example", "org"]
+    for label in labels:
+        results.append(check_label(label))
+
+-->Special URL Handling:
+    Automatic Punycode decoding (xn--...)
+    Protocol stripping (https:// ignored)
+    Port number handling (:8080 preserved)
+    Path/query parameters not checked (focus on domain)
+
+-->Test Cases:
+
+    python
+    # Suspicious
+    check("https://раураl.com/login")
+    check("xn--80ak6aa92e.com:443")
+    check("www.pаypal.example.org")
+    
+    # Safe
+    check("https://paypal.com/en/login")
+    check("xn--mgbh0fb.xn--kgbechtv")  # Arabic domain in Punycode
+
+Key URL Handling Features
+Feature	                    Example                  Input	Handling
+Protocols	             https://раураl.com	           раураl.com checked
+Ports	                 paypal.com:8080	             paypal.com checked
+Punycode	             xn--80ak6aa92e.com            Decodes to аррӏе.com
+Subdomains	           login.pаypal.com              Checks login and pаypal separately
+International TLDs	   example.рф	                   Checks both example and рф
+
+
+
+
+make sure yourun this python code from folde which contain this code plus script.txt and confusable.txt.
+
+To understand how this code works refer png attached to this directory.
