@@ -4,6 +4,21 @@ to run this tool you only need below 4 files:
 3) confusables.txt
 4) requirements.txt
 
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate    # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+And you are good to go
+
+Development dependencies
+pytest==8.2.0
+twine==5.0.0
+flake8==7.1.0
+
 
 # First run (will auto-download data files)
 python homograph_detector.py "раураl.com"
