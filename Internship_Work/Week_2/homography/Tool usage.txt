@@ -1,7 +1,8 @@
-to run this tool you only need below 3 files:
+to run this tool you only need below 4 files:
 1) homograph_detector.py
 2) Scripts.txt
 3) confusables.txt
+4) requirements.txt
 
 
 # First run (will auto-download data files)
