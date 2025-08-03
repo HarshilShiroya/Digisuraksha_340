@@ -1,0 +1,132 @@
+Features of the Homograph Detector
+
+Core Detection Capabilities
+
+1) Unicode Homograph Detection
+  Identifies visually similar characters across scripts
+  Detects Cyrillic, Greek, and other script homographs
+2) Mixed-Script Detection
+  Flags labels combining Latin + Cyrillic, Latin + Greek, etc.
+  Configurable allowed scripts (default: Latin only)
+3) Punycode Attack Prevention
+  Automatically decodes and analyzes IDNA domains
+  Detects homographs in xn-- encoded domains
+4) Invisible Character Detection
+  Removes and flags:
+    Zero-width characters (ZWJ, ZWNJ)
+    Directional controls (RLO, LRO)
+    BOM and format characters
+    Non-spacing marks
+5) Skeleton Mapping
+  Uses Unicode UTR 39 confusables data
+  Normalizes → Case folds → Confusable maps → Skeleton
+6) Whitelist Protection
+  Compares against trusted domains/strings
+  Flags when skeleton matches whitelist but raw differs
+
+Operational Features
+
+7) Automatic Data Management
+  Downloads required Unicode data files
+  Self-updating with --update-data flag
+8) Flexible Integration
+  Simple API: is_homograph(label)
+  CLI tool for command-line use
+  JSON output option
+9) Detailed Reporting
+  Exact character positions
+  Unicode code points
+  Script identification
+  Mapping explanations
+10) Performance Optimized
+  Precomputed whitelist skeletons
+  Per-label processing
+  Cached confusable mappings
+11) Customizable Security Policies
+  Adjustable allowed scripts
+  Configurable whitelists
+  Threshold tuning
+
+
+
+Limitations
+
+Detection Limitations
+
+1) Script Granularity
+  Cannot distinguish between similar scripts (e.g., Hanzi vs Kanji)
+  May flag legitimate mixed-script domains (e.g., "café.com")
+2) New Confusables
+  Requires updates for new Unicode versions
+  Zero-day confusables might evade detection
+3) Visual Similarity Gaps
+  Doesn't implement glyph-based visual similarity
+  Some homoglyphs might not be in UTR 39
+4) Diacritic Handling
+  Flags all unexpected diacritics by default
+  No distinction between legitimate and malicious accents
+5) TLD-Specific Rules
+  Doesn't recognize IDN TLD allowlists
+  Treats all domain parts equally
+
+
+Technical Limitations
+
+6) URL Parsing
+  Doesn't automatically split domains/subdomains
+  Requires pre-processing for full URLs
+7) Character Normalization
+  Limited to NFC normalization
+  No support for NFKC (compatibility decomposition)
+8) Whitelist Dependency
+  Effectiveness depends on whitelist quality
+  False negatives for unlisted legitimate domains
+9) Performance Scaling
+  Large whitelists (>100K) impact memory
+  No built-in clustering for batch processing
+10) Language Support
+  Better for European scripts than:
+    Right-to-left scripts (Arabic, Hebrew)
+    CJK ideographs
+    Complex scripts (Devanagari, Thai)
+
+
+
+Operational Constraints
+
+11) Update Requirements
+  Manual updates for Unicode data
+  No automatic version checking
+12) No Risk Scoring
+  Binary safe/suspicious output
+  No confidence scoring
+13) UI Integration
+  Provides reasons but no visual highlighting
+  No built-in "override" mechanism
+14)Internationalization
+  English-only output messages
+  No localization support
+
+
+#Ideal Use Cases
+  Domain monitoring systems
+  Login form validation
+  Phishing detection pipelines
+  User-generated content screening
+  Brand protection services
+
+
+#Less Suitable For
+  General natural language processing
+  Languages with complex orthography
+  Systems requiring granular risk scoring
+  Environments with strict performance constraints
+  Applications needing real-time visual rendering analysis
+
+
+#The tool provides robust baseline protection against common homograph attacks while offering enterprise-grade customization options. For maximum protection, combine with:
+
+1. TLD-specific rule sets
+2. Visual similarity algorithms
+3. Machine learning classifiers
+4. Real-time threat intelligence feeds
