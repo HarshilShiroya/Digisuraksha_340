@@ -1,0 +1,110 @@
+[
+  {
+    "id": "jpg",
+    "ext": ["jpg", "jpeg", "jpe"],
+    "header": ["ffd8ff"],
+    "footer": ["ffd9"],
+    "offset": 0,
+    "min_size": 100,
+    "description": "JPEG image (JFIF/Exif). Start FFD8FF, end FFD9."
+  },
+  {
+    "id": "png",
+    "ext": ["png"],
+    "header": ["89504e470d0a1a0a"],
+    "footer": ["49454e44ae426082"],
+    "offset": 0,
+    "min_size": 64,
+    "description": "PNG image (8-byte signature)."
+  },
+  {
+    "id": "gif",
+    "ext": ["gif"],
+    "header": ["474946383761", "474946383961"],
+    "footer": ["003b"],
+    "offset": 0,
+    "min_size": 50,
+    "description": "GIF image (GIF87a or GIF89a)."
+  },
+  {
+    "id": "zip",
+    "ext": ["zip"],
+    "header": ["504b0304"],
+    "footer": ["504b0506"],
+    "offset": 0,
+    "min_size": 100,
+    "description": "ZIP archive file."
+  },
+  {
+    "id": "docx",
+    "ext": ["docx"],
+    "header": ["504b0304"],
+    "footer": ["504b0506"],
+    "offset": 0,
+    "min_size": 100,
+    "description": "Microsoft Word DOCX file (ZIP-based)."
+  },
+  {
+    "id": "doc",
+    "ext": ["doc"],
+    "header": ["d0cf11e0a1b11ae1"],
+    "footer": [],
+    "offset": 0,
+    "min_size": 100,
+    "description": "Microsoft Word DOC (OLE) file."
+  },
+  {
+    "id": "xls",
+    "ext": ["xls"],
+    "header": ["d0cf11e0a1b11ae1"],
+    "footer": [],
+    "offset": 0,
+    "min_size": 100,
+    "description": "Microsoft Excel XLS (OLE) file."
+  },
+  {
+    "id": "ppt",
+    "ext": ["ppt"],
+    "header": ["d0cf11e0a1b11ae1"],
+    "footer": [],
+    "offset": 0,
+    "min_size": 100,
+    "description": "Microsoft PowerPoint PPT (OLE) file."
+  },
+  {
+    "id": "pdf",
+    "ext": ["pdf"],
+    "header": ["25504446"],
+    "footer": ["%%EOF"],
+    "offset": 0,
+    "min_size": 100,
+    "description": "PDF document. Starts with %PDF, ends with %%EOF."
+  },
+  {
+    "id": "wav",
+    "ext": ["wav"],
+    "header": ["52494646"],
+    "footer": [],
+    "offset": 0,
+    "min_size": 100,
+    "description": "WAV audio file (RIFF format)."
+  },
+  {
+    "id": "mov",
+    "ext": ["mov"],
+    "header": ["00000014667479707174"],
+    "footer": [],
+    "offset": 0,
+    "min_size": 100,
+    "description": "QuickTime MOV video file."
+  },
+  {
+    "id": "wmv",
+    "ext": ["wmv", "asf"],
+    "header": ["3026b2758e66cf11a6d900aa0062ce6c"],
+    "footer": [],
+    "offset": 0,
+    "min_size": 100,
+    "description": "Windows Media Video (WMV/ASF) file."
+  }
+]

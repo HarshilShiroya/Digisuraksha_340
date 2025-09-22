@@ -1,0 +1,16 @@
+# Core
+# if pyewf show error then use this command: sudo apt install libewf-dev python3-libewf
+reportlab
+pycryptodome
+
+# Optional
+pytsk3
+pyvmdk
+Pillow
+PyPDF2
+python-magic
+yara-python
+ssdeep
+pytesseract
+whoosh
+pyewf
